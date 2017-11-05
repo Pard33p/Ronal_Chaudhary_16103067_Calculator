@@ -1,0 +1,175 @@
+<html>
+<head>
+<title>Calculator</title>
+</head>
+    <style>
+           #abcd{
+            position: absolute;
+            left: 35%;
+            font-family: Arial black;
+            }
+      
+        body{
+            background-size: cover;
+            background-color:darkgoldenrod
+            }
+        
+        input[type="button"]
+            {
+            font-weight: bold;
+            font-family: sans-serif;
+            }
+        
+    </style>
+    
+    
+<body style="background-color:aqua;" > 
+   <center>
+                <h1 style="font-size:50px; color:black;"><u>Sci-Calculator</u></h1>
+  </center>
+ <div id="abcd">
+
+     <form name="Calculator">
+        
+        <input name="display" placeholder="0" style="width:396px; height:50;text-align:right; font-size=25px; top:25px;"> 
+    <br>
+        <input type="button" value="C" onClick="Calculator.display.value=' '" style="background-color:grey; height:50px; width:75px;">
+        <input type="button" value="(" onClick="operate('(')"  style="height:50px; width:75px;">
+        <input type="button" value=")" onClick="operate(')')" style="height:50px; width:75px;">
+        <input type="button" value="MOD" onClick="operate('%')"  style="height:50px; width:75px;">
+        <input type="button" value="bckspc" onClick="backspace(this.form)"  style="height:50px; width:75px;">
+        
+    <br>
+        <input type="button" value="^2" onClick="sqr(Calculator.display.value)" style="height:50px; width:75px;">
+        <input type="button" value="^3" onClick="cube(Calculator.display.value)"  style="height:50px; width:75px;">
+        <input type="button" value="PI" onClick="pi(Calculator.display.value)"  style="height:50px; width:75px;">
+        <input type="button" value="/" onClick="operate('/')" style="height:50px; width:75px; background-color:                                   darkgoldenrod;" >
+        <input type="button" value="sin" onClick="sin(Calculator.display.value)" style="height:50px; width:75px; background-color:                                   green;">
+
+    
+    <br>
+        <input type="button" value="7" onClick="number('7')" style="height:50px; width:75px;">
+        <input type="button" value="8" onClick="number('8')" style="height:50px; width:75px;" >
+        <input type="button" value="9" onClick="number('9')" style="height:50px; width:75px;" >
+        <input type="button" value="*" onClick="operate('*')" style="height:50px; width:75px; background-color:                                   darkgoldenrod;" >
+        <input type="button" value="cos" onClick="cos(Calculator.display.value)"  style="height:50px; width:75px; background-color:                                   green;">
+    <br>
+        <input type="button" value="4" onClick="number('4')" style="height:50px; width:75px;" >
+        <input type="button" value="5" onClick="number('5')" style="height:50px; width:75px;" >
+        <input type="button" value="6" onClick="number('6')" style="height:50px; width:75px;" >
+        <input type="button" value="-" onClick="operate('-')" style="height:50px; width:75px; background-color:                                   darkgoldenrod;" >
+        <input type="button" value="tan" onClick="tan(Calculator.display.value)"  style="height:50px; width:75px; background-color:                                   green;">
+        
+    <br>
+        <input type="button" value="1" onClick="number('1')" style="height:50px; width:75px;" >
+        <input type="button" value="2" onClick="number('2')" style="height:50px; width:75px;" >
+        <input type="button" value="3" onClick="number('3')"  style="height:50px; width:75px;">
+        <input type="button" value="+" onClick="operate('+')"  style="height:50px; width:75px; background-color:                                   darkgoldenrod;">
+        <input type="button" value="ln" onClick="log(Calculator.display.value)"  style="height:50px; width:75px; background-color:                                   green;">
+    <br>
+        <input type="button" value="." onClick="Calculator.display.value+='.'"  style="height:50px; width:75px;">
+        <input type="button" value="0" onClick="number('0')"  style="height:50px; width:75px;">
+        <input type="button" value="%" onClick="Calculator.display.value=eval(Calculator.display.value/100)"  style="height:50px; width:75px;">
+        <input type="button" value="=" onClick="equal(Calculator.display.value)" style="background-color:                                   chocolate; height:50px; width:155px;" >
+        
+    </form>
+        <h2><center>
+         By Ronal Chaudhary<br>
+         16103067</center>   </h2>
+        
+    </div>
+    
+    <script>
+       var f=0; var c=0;
+    function equal(x)
+        {
+            Calculator.display.value=eval(x);
+            f=1;c=0;
+        }
+        
+        document.onkeydown=function(event)
+        {
+        var key_code=event.keyCode;
+            if(key_code==13){
+                f=1;
+        event.preventDefault();
+        var x=Calculator.display.value;
+       equal(x);
+            }
+        }
+
+        
+    function operate(z)
+        {
+            if(c==0)
+                {
+                Calculator.display.value+=z;
+                f=0;c=1;
+                }
+            else
+                f=0;
+        }
+        
+    function number(z)
+        {
+            if(f==1)
+                {
+                Calculator.display.value=z;
+                f=0;c=0;
+                }
+            else
+                {
+                Calculator.display.value+=z;
+                c=0;
+                }
+            
+        }
+        
+    
+    function backspace(Calculator)
+        {
+            var size = Calculator.display.value.length;
+            Calculator.display.value=Calculator.display.value.substring(0,size-1);
+            f=1;
+        }
+    function sin(Cal)
+        {
+            Calculator.display.value=Math.sin(Cal*Math.PI/180);
+           f=1;
+        }
+    function cos(Cal)
+        {
+            Calculator.display.value=Math.cos(Cal*Math.PI/180);
+           f=1;
+        }
+    function tan(Cal)
+        {
+            Calculator.display.value=Math.tan(Cal*Math.PI/180);
+            f=1;
+        }
+    function log(Cal)
+        {
+            Calculator.display.value=Math.log(Calculator.display.value);
+            f=1;
+        }
+    function sqr(par)
+        {
+            Calculator.display.value=(Calculator.display.value*Calculator.display.value);
+            f=1;
+        }
+    function cube(par)
+        {
+            Calculator.display.value=(Calculator.display.value*Calculator.display.value*Calculator.display.value);
+            f=1;
+        }
+    function pi(a)
+        {
+            Calculator.display.value+=3.14159;
+            f=1;
+        }
+ </script>
+
+
+
+</body>
+</html>
